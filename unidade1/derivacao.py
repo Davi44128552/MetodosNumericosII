@@ -39,7 +39,7 @@ def tipo_derivada(tipo, funcao, x, Dx):
 # Tentando converter strings em funcoes
 def derivada_forward(precisao, x, Dx, funcao):
 
-    iteracoes = 0
+    iteracoes = 0 
     resultado_anterior = float("inf")
     loop = True
     secante = 0
