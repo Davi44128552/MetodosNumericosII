@@ -16,15 +16,15 @@ def converter_funcao(funcao_string, valor):
 # Criando uma funcao que vai retornar 
 def tipo_derivada(tipo, funcao, x, Dx):
     # Calculando a reta secante baseado no tipo de derivada calculada
-    if (tipo.equals("forward")):
+    if (tipo == "forward"):
         numerador = converter_funcao(funcao, x + Dx) - converter_funcao(funcao, x)
         denominador = Dx
 
-    elif (tipo.equals("backward")):
+    elif (tipo == "backward"):
         numerador = converter_funcao(funcao, x) - converter_funcao(funcao, x - Dx)
         denominador = Dx
         
-    elif (tipo.equals("central")):
+    elif (tipo == "central"):
         numerador = converter_funcao(funcao, x + Dx) - converter_funcao(funcao, x - Dx)
         denominador = 2 * Dx
 
@@ -37,7 +37,7 @@ def tipo_derivada(tipo, funcao, x, Dx):
     return secante
 
 # Tentando converter strings em funcoes
-def derivada_forward(precisao, x, Dx, funcao):
+def derivada(precisao, x, Dx, funcao, tipo):
 
     iteracoes = 0 
     resultado_anterior = float("inf")
@@ -45,9 +45,12 @@ def derivada_forward(precisao, x, Dx, funcao):
     secante = 0
     while (loop):
         # Calculando a reta secante
-        numerador = converter_funcao(funcao, x + Dx) - converter_funcao(funcao, x)
-        denominador = Dx
-        secante = numerador / denominador
+        if (tipo == 1):
+            secante = tipo_derivada("forward", funcao, x, Dx)
+        elif (tipo == 2):
+            secante = tipo_derivada("backward", funcao, x, Dx)
+        elif (tipo == 3):
+            secante = tipo_derivada("central", funcao, x, Dx)
 
         # Verificando se estamos suficientemente próximos da reta tangente
         if (abs(resultado_anterior - secante) < precisao):
@@ -64,4 +67,5 @@ def derivada_forward(precisao, x, Dx, funcao):
 funcao = str(input("Digite a função que você deseja calcular sua derivada: "))
 valor = float(input("Agora digite x: "))
 Dx = float(input("Por fim, digite Dx: "))     
-print(f"A derivada da função que você deseja, com x e Dx informados é {derivada_forward(0.0000000001, valor, Dx, funcao)}")
+tipo = int(input("Digite agora o tipo de derivada que você deseja calcular: \n[ 1 ] Forward \n[ 2 ] Backward \n[ 3 ] Central \n"))
+print(f"A derivada da função que você deseja, com x e Dx informados é {derivada(0.0000000001, valor, Dx, funcao, tipo)}")
