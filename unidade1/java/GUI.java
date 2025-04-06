@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class GUI extends JFrame implements ActionListener{
+class GUI extends JFrame implements ActionListener{
 
     // Elementos essenciais da GUI
         // ComboBox
@@ -138,10 +138,9 @@ public class GUI extends JFrame implements ActionListener{
                 resultado = derivada.calcularDerivacao(0.000001, 6);
             }
 
-            labelResultado.setText(String.valueOf(resultado));
         } 
         catch (NumberFormatException ex) {
-            labelResultado.setText("Erro: Valores inválidos");
+            ex.printStackTrace();
         } 
 
         labelResultado.setText(String.valueOf(resultado));
