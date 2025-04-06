@@ -107,14 +107,17 @@ public class GUI extends JFrame implements ActionListener{
     // Funcao do botao
     @Override
     public void actionPerformed(ActionEvent e){
-        try {
+        
             // Corrigindo: usar getText() em vez de getSelectedText()
             double xDouble = Double.parseDouble(campo_textoX.getText());
             double deltaXDouble = Double.parseDouble(campo_textoDeltaX.getText());
+            String funcao = campo_texto.getText();
             double resultado = 0;
 
             // Instanciando o objeto derivada
-            derivada = new Derivacao(xDouble, deltaXDouble, campo_texto.getText());
+            derivada = new Derivacao(xDouble, deltaXDouble, funcao); 
+            
+        try {
 
             if (comboBox.getSelectedItem() == "Derivada Padrão Forward"){
                 resultado = derivada.calcularDerivacao(0.000001, 1);
@@ -139,7 +142,9 @@ public class GUI extends JFrame implements ActionListener{
         } 
         catch (NumberFormatException ex) {
             labelResultado.setText("Erro: Valores inválidos");
-        }
+        } 
+
+        labelResultado.setText(String.valueOf(resultado));
     }
     
 }

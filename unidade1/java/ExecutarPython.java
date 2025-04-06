@@ -9,6 +9,7 @@ class ExecutarPython {
     public static Double converter_funcao(String funcaoString, double x){
 
         Double resultadoDouble = null;
+        String caminhoPython = "unidade1\\java\\Converter_funcao.py";
 
         try{
 
@@ -16,7 +17,7 @@ class ExecutarPython {
             ProcessBuilder pb = new ProcessBuilder(
                 
                 "python3",
-                "Converter_funcao.py",
+                caminhoPython,
                 funcaoString,
                 String.valueOf(x)
             );
@@ -27,7 +28,6 @@ class ExecutarPython {
 
             // Lendo o resultado imprimido pela funcao em python
             String resultado = reader.readLine();
-            System.out.println(resultado);
 
             // Realizando a conversao do valor em string para double
             resultadoDouble = Double.parseDouble(resultado);
