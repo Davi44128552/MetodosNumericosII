@@ -97,22 +97,3 @@ def derivacao(precisao, x, Dx, funcao, tipo):
     
     return secante
 
-# Testando a funcao
-# Valores a serem calculados na função pedidos ao usuário
-funcao = str(input("Digite a função que você deseja calcular sua derivada: "))
-valor = float(input("Agora digite x: "))
-Dx = float(input("Por fim, digite Dx: "))
-
-# Escolhendo qual derivada(primeira ou segunda) será escolhida
-tipo = int(input("Digite agora o tipo de derivada que você deseja calcular: \n[ 1 ] Derivada Padrão \n[ 2 ] Derivada Segunda\n"))
-
-# Caso queiramos a derivada padrão, deixamos o usuário escolher o tipo
-if (tipo == 1):
-    tipo = int(input("Digite agora o método que você deseja calcular \n[ 1 ] Forward \n[ 2 ] Backward \n[ 3 ] Central"))
-
-# Caso queiramos a derivada segunda, deixamos o usuário também escolher o tipo
-elif (tipo == 2):
-    tipo = int(input("Digite agora o método que você deseja calcular \n[ 1 ] Forward \n[ 2 ] Backward \n[ 3 ] Central")) + 3
-
-
-print(f"A derivada da função que você deseja, com x e Dx informados é {derivacao(0.0000000001, valor, Dx, funcao, tipo)}")
