@@ -13,5 +13,7 @@ root.iconbitmap("img/derivative.ico")
 label_introduction = tk.Label(root, text = "You can calculate derivative of a function here!")
 label_introduction.pack(pady = 10)
 
+
+
 # GUI's Main loop
 root.mainloop()
