@@ -1,18 +1,19 @@
-from conversor_funcao import converter_funcao
+def funcao(x):
+    return x*x
 
 # Criando uma funcao que vai retornar 
 def tipo_derivada(tipo, funcao, x, Dx):
     # Calculando a reta secante baseado no tipo de derivada calculada
     if (tipo == "forward"):
-        numerador = converter_funcao(funcao, x + Dx) - converter_funcao(funcao, x)
+        numerador = funcao(funcao, x + Dx) - funcao(funcao, x)
         denominador = Dx
 
     elif (tipo == "backward"):
-        numerador = converter_funcao(funcao, x) - converter_funcao(funcao, x - Dx)
+        numerador = funcao(funcao, x) - funcao(funcao, x - Dx)
         denominador = Dx
         
     elif (tipo == "central"):
-        numerador = converter_funcao(funcao, x + Dx) - converter_funcao(funcao, x - Dx)
+        numerador = funcao(funcao, x + Dx) - funcao(funcao, x - Dx)
         denominador = 2 * Dx
 
     else:
@@ -29,15 +30,15 @@ def tipo_derivada(tipo, funcao, x, Dx):
 def tipo_derivada_segunda(tipo, funcao, x, Dx):
     # Calculando a reta secante baseado no tipo de derivada calculada
     if (tipo == "forward"):
-        numerador = converter_funcao(funcao, x + 2 * Dx) - 2 * converter_funcao(funcao, x + Dx) + converter_funcao(funcao, x)
+        numerador = funcao(funcao, x + 2 * Dx) - 2 * funcao(funcao, x + Dx) + funcao(funcao, x)
         denominador = Dx * Dx
 
     elif (tipo == "backward"):
-        numerador = converter_funcao(funcao, x) - 2* converter_funcao(funcao, x - Dx) + converter_funcao(funcao, x - 2 * Dx)
+        numerador = funcao(funcao, x) - 2* funcao(funcao, x - Dx) + funcao(funcao, x - 2 * Dx)
         denominador = Dx * Dx
         
     elif (tipo == "central"):
-        numerador = converter_funcao(funcao, x + Dx) - 2* converter_funcao(funcao, x) + converter_funcao(funcao, x - Dx)
+        numerador = funcao(funcao, x + Dx) - 2* funcao(funcao, x) + funcao(funcao, x - Dx)
         denominador = Dx * Dx
 
     else:
