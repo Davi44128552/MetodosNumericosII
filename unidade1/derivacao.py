@@ -30,9 +30,11 @@ def derivada_primeira_erro_quadratico(tipo, x, Dx):
 def derivada_primeira_erro_cubico(tipo, x, Dx):
     if (tipo == 'forward'):
         numerador = - 11 * funcao(x) + 18 * funcao(x + Dx) - 9 * funcao(x + 2*Dx) + 2 * funcao(x + 3*Dx)
-        denominador = 6 * Dx
 
-    return numerador / denominador
+    elif (tipo == 'backward'):
+        numerador = -11 * funcao(x - 3*Dx) + 18 * funcao(x - 2*Dx) - 9 * funcao(x - Dx) + 2 * funcao(x)
+
+    return numerador / 6 * Dx
 
 # Derivadas Segunda
 def derivada_segunda_erro_linear(tipo, x, Dx):
@@ -49,4 +51,4 @@ def derivada_segunda_erro_linear(tipo, x, Dx):
 
 print(derivada_primeira_erro_linear('forward', 2, 0.00001))
 print(derivada_primeira_erro_quadratico('central', 2, 0.00001))
-print(derivada_primeira_erro_cubico('forward', 2, 0.00001))
+print(derivada_primeira_erro_cubico('backward', 2, 0.00001))
