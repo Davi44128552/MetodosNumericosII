@@ -66,6 +66,10 @@ def derivada_segunda_forward(erro, x, Dx):
         numerador = 35 * funcao(x) - 104 * funcao(x + Dx) + 114 * funcao(x + 2*Dx) - 56 * funcao(x + 3*Dx) + 11 * funcao(x + 4*Dx)
         denominador = 12 * Dx * Dx
 
+    elif (erro == 'quarta_ordem'):
+        numerador = 45 * funcao(x) - 154 * funcao(x + Dx) + 214 * funcao(x + 2*Dx) - 156 * funcao(x + 3*Dx) + 61 * funcao(x + 4*Dx) - 10 * funcao(x + 5*Dx)
+        denominador = 12 * Dx * Dx
+
     return numerador / denominador
 
 def derivada_segunda_backward(erro, x, Dx):
@@ -80,6 +84,10 @@ def derivada_segunda_backward(erro, x, Dx):
     elif (erro == 'cubico'):
         numerador = 35 * funcao(x) - 104 * funcao(x - Dx) + 114 * funcao(x - 2*Dx) - 56 * funcao(x - 3*Dx) + 11 * funcao(x - 4*Dx)
         denominador = 12*Dx*Dx
+
+    elif (erro == 'quarta_ordem'):
+        numerador = 45 * funcao(x) - 154 * funcao(x - Dx) + 214 * funcao(x - 2*Dx) - 156 * funcao(x - 3*Dx) + 61 * funcao(x - 4*Dx) - 10 * funcao(x - 5*Dx)
+        denominador = 12 * Dx * Dx
 
     return numerador / denominador
 
@@ -127,3 +135,5 @@ def derivada_terceira_central(erro, x, Dx):
         denominador = 8*Dx**3
 
     return numerador / denominador
+
+print(derivada_segunda_backward('quarta_ordem', 2, 0.00001))

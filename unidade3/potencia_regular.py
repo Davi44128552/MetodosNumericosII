@@ -2,35 +2,43 @@
 import numpy as np
 
 # Criando a função para implementar o método da potência regular
-def potencia_regular(A, v0, erro = 0.0001, max_iteracoes = 100):
+def potencia_regular(A, v0, epsilon = 0.0001):
 
     # Normalizando o vetor inicial
-    vetor = v0 / np.linalg.norm(v0, np.inf)
+    vetor_new = v0 / np.linalg.norm(v0, np.inf)
 
     # ! Obs.: Usamos o np.inf para evitar overflow
 
+    # Definindo o erro inicial
+    erro = 1
+
+    # Definindo o lambda inicial
+    lambda_old = 0
+
     # Realizando as iterações para recalcular os valores do autovalor e do autovetor
-    for i in range(0, max_iteracoes):
+    while (erro > epsilon):
+        # Definindo o vold
+        vetor_old = vetor_new
+
         # Multiplicando A pelo vetor atual e depois normalizando
-        Av = np.dot(A, vetor)
+        Av = np.dot(A, vetor_old)
         proximo_vetor = Av / np.linalg.norm(Av, np.inf)
 
         # Calculando o possível autovalor dominante
-        lambda_atual = np.dot(Av, vetor) / np.dot(vetor, vetor)
+        lambda_new = np.dot(vetor_new.T, np.dot(A, vetor_new))
 
-        # Verificando a convergencia (se podemos continuar no loop ou nao)
-        if (np.linalg.norm(proximo_vetor - vetor, np.inf) < erro):
-            break
+        # Calculando o erro
+        erro = abs((lambda_new - lambda_old) / lambda_new)
 
-        # Caso o critério de parada não tenha sido atingido, continuamos o loop
-        vetor = proximo_vetor
+        # Atualizando lambda_old
+        lambda_old = lambda_new
 
     
     # Quando enverramos o loop, retornamos o resultado
-    return lambda_atual, vetor
+    return lambda_new, vetor_new
 
 # Testando
-A = np.array([[3, 1], [1, 2]])
+A = np.array([[1, 1], [1, 1]])
 v0 = np.array([1, 1])
 lambda_resultante, vetor_resultante = potencia_regular(A, v0)
 
