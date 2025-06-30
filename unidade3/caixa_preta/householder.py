@@ -54,20 +54,3 @@ def tridiagonal_householder(A):
 
     # Retornando o resultado
     return A_anterior, H
-
-# Testando as funções
-A = np.array([
-    [4.0, 1.0, -2.0, 2.0],
-    [1.0, 2.0, 0.0, 1.0],
-    [-2.0, 0.0, 3.0, -2.0],
-    [2.0, 1.0, -2.0, -1.0]
-])
-
-A_tridiag, H = tridiagonal_householder(A)
-
-print("Matriz tridiagonal Ã:")
-print(np.round(A_tridiag, 6))
-
-print("\nMatriz acumulada H:")
-print(np.round(H, 6))
-
