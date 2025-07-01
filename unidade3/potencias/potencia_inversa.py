@@ -1,41 +1,21 @@
 # Importando numpy para operações com vetores
 import numpy as np
+from potencia_regular import * # Importando a potência regular 
 
 # Criando a função para implementar o método da potência regular
 def potencia_inversa(A, v0, erro = 0.00001):
 
-    # Normalizando o vetor inicial
-    vetor = v0 / np.linalg.norm(v0, np.inf)
+    # Calculando a inversa da matriz A
+    A_inversa = np.linalg.inv(A)
 
-    # ! Obs.: Usamos o np.inf para evitar overflow
+    # Chamando a função da potência regular para me dar o autovalor e autovetor da matriz inversa
+    lambda_resultante, vetor_resultante = potencia_regular(A_inversa, v0, erro)
 
-    # Definindo epsilon inicial 
-    epsilon = 1
+    # Calculando a inversa do lambda_resultante da matriz inversa
+    # Isto porque a sua inversa é o lambda que queremos
+    lambda_resultante = 1 / lambda_resultante
 
-    # Realizando as iterações para recalcular os valores do autovalor e do autovetor
-    while (epsilon > erro):
-        # Resolvendo A w = vetor
-        w = np.linalg.solve(A, vetor)
-
-        # Definindo o próximo vetor
-        proximo_vetor = w / np.linalg.norm(w, np.inf)
-
-        # Calculando o possível autovalor dominante
-        lambda_atual = np.dot(proximo_vetor.T, np.dot(A, proximo_vetor)) / np.dot(proximo_vetor.T, proximo_vetor)
-
-        # Redefinindo o valor de epsilon
-        epsilon = abs(np.linalg.norm(proximo_vetor - vetor, np.inf))
-
-        # Caso o critério de parada não tenha sido atingido, continuamos o loop
-        vetor = proximo_vetor
+    # O vetor se mantém
     
-    # Quando encerramos o loop, retornamos o resultado
-    return lambda_atual, vetor
-
-# Testando
-A = np.array([[2, 0, 1], [0, 2, 0], [1, 0, 2]])
-v0 = np.array([1, 1, 1])
-lambda_resultante, vetor_resultante = potencia_inversa(A, v0)
-
-print(lambda_resultante)
-print(vetor_resultante)
+    # Retornando o resultado final
+    return lambda_resultante, vetor_resultante
