@@ -2,7 +2,7 @@
 import sys
 
 # Importando bibliotecas dos metodos
-import unidade2.newton_cotes as nc
+import unidade2.newton_cotes.newton_cotes_aberta as nc
 
 # Definindo a função main
 def main(argv):
