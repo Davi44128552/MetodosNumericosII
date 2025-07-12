@@ -1,13 +1,15 @@
+import math
+
 # Função provisória
-def funcao(x):
-    return x*x
+def funcao_exemplo(x):
+    return x**2 * math.log(x) + math.exp(x)
 
 # Criando uma função para converter intervalo
 def converter_intervalo(alpha, a, b):
     return ((b + a) / 2) + ((b - a) / 2) * alpha
 
 # Função para calcular gauss-legendre
-def gauss_legendre(a, b, n): # intervalo [a, b] com n pontos
+def gauss_legendre(a, b, n, funcao = funcao_exemplo): # intervalo [a, b] com n pontos
 
     # Determinando os pesos e pontos de acordo com n para [-1, 1]
     if (n == 2):

@@ -1,8 +1,10 @@
-def funcao(x):
-    return x*x
+import math
+
+def funcao_exemplo(x):
+    return x**2 * math.log(x) + math.exp(x)
 
 # Fórmula aberta newton-cotes grau 1
-def formula_aberta_grau_1(x_inicio, x_fim = None, delta_x = None):
+def formula_aberta_grau_1(x_inicio, x_fim = None, delta_x = None, funcao = funcao_exemplo):
     # Se x_fim tiver sido informado, calculamos delta_x
     if (delta_x is None):
         delta_x = x_fim - x_inicio
@@ -14,7 +16,7 @@ def formula_aberta_grau_1(x_inicio, x_fim = None, delta_x = None):
     return (delta_x / 2) * (funcao(x_inicio + h) + funcao(x_inicio + 2*h))
 
 # Fórmula aberta newton-cotes grau 2
-def formula_aberta_grau_2(x_inicio, x_fim = None, delta_x = None):
+def formula_aberta_grau_2(x_inicio, x_fim = None, delta_x = None, funcao = funcao_exemplo):
     # Se x_fim tiver sido informado, calculamos delta_x
     if (delta_x is None):
         delta_x = x_fim - x_inicio
@@ -26,7 +28,7 @@ def formula_aberta_grau_2(x_inicio, x_fim = None, delta_x = None):
     return ((4 * h) / 3) * ((2 * funcao(x_inicio + h)) - funcao(x_inicio + 2*h) + (2 * funcao(x_inicio + 3*h)))
 
 # Fórmula aberta newton-cotes grau 3
-def formula_aberta_grau_3(x_inicio, x_fim = None, delta_x = None):
+def formula_aberta_grau_3(x_inicio, x_fim = None, delta_x = None, funcao = funcao_exemplo):
     # Se x_fim tiver sido informado, calculamos delta_x
     if (delta_x is None):
         delta_x = x_fim - x_inicio
@@ -37,9 +39,9 @@ def formula_aberta_grau_3(x_inicio, x_fim = None, delta_x = None):
     # Retornando o resultado
     return ((5 * h) / 24) * ((11 * funcao(x_inicio + h)) + funcao(x_inicio + 2*h) + funcao(x_inicio + 3*h) + (11 * funcao(x_inicio + 4*h)))
 
-def integral_final(x_inicio, x_fim, erro):
+def integral_final(x_inicio, x_fim, erro, funcao = funcao_exemplo):
     erro_atual = float("inf")
-    integral_ultima = formula_aberta_grau_3(x_inicio, x_fim = x_fim)
+    integral_ultima = formula_aberta_grau_3(x_inicio, x_fim = x_fim, funcao = funcao)
     n = 1
     iteracoes = 0
     while (erro_atual > erro):
@@ -50,7 +52,7 @@ def integral_final(x_inicio, x_fim, erro):
         for i in range(n):
             a = x_inicio + i * h
             b = a + h
-            integral_atual += formula_aberta_grau_3(a, x_fim = b)
+            integral_atual += formula_aberta_grau_3(a, x_fim = b, funcao = funcao)
         erro_atual = abs(integral_atual - integral_ultima)
         integral_ultima = integral_atual
 

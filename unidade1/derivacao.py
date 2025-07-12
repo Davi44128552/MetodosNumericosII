@@ -1,9 +1,12 @@
-def funcao(x):
-    return x**4
+import math
+
+# Fazendo uma função exemplo
+def funcao_exemplo(x):
+    return x**2 * math.log(x) + math.exp(x)
 
 # Calculando as derivadas
 # Derivadas Primeira
-def derivada_primeira_forward(erro, x, Dx):
+def derivada_primeira_forward(erro, x, Dx, funcao = funcao_exemplo):
     if (erro == 'linear'):
         numerador = funcao(x + Dx) - funcao(x)
         denominador = Dx
@@ -22,7 +25,7 @@ def derivada_primeira_forward(erro, x, Dx):
 
     return numerador / denominador
 
-def derivada_primeira_backward(erro, x, Dx):
+def derivada_primeira_backward(erro, x, Dx, funcao = funcao_exemplo):
     if (erro == 'linear'):
         numerador = funcao(x) - funcao(x - Dx)
         denominador = Dx
@@ -41,7 +44,7 @@ def derivada_primeira_backward(erro, x, Dx):
 
     return numerador / denominador 
 
-def derivada_primeira_central(erro, x, Dx):
+def derivada_primeira_central(erro, x, Dx, funcao = funcao_exemplo):
     if (erro == 'quadratico'):
         numerador = funcao(x + Dx) - funcao(x - Dx)
         denominador = 2*Dx
@@ -53,7 +56,7 @@ def derivada_primeira_central(erro, x, Dx):
     return numerador / denominador
 
 # Derivadas Segunda
-def derivada_segunda_forward(erro, x, Dx):
+def derivada_segunda_forward(erro, x, Dx, funcao = funcao_exemplo):
     if (erro == 'linear'):
         numerador = funcao(x) - 2 * funcao(x + Dx) + funcao(x + 2*Dx)
         denominador = Dx*Dx
@@ -68,7 +71,7 @@ def derivada_segunda_forward(erro, x, Dx):
 
     return numerador / denominador
 
-def derivada_segunda_backward(erro, x, Dx):
+def derivada_segunda_backward(erro, x, Dx, funcao = funcao_exemplo):
     if (erro == 'linear'):
         numerador = funcao(x) - 2 * funcao(x - Dx) + funcao(x - 2*Dx)
         denominador = Dx*Dx
@@ -83,7 +86,7 @@ def derivada_segunda_backward(erro, x, Dx):
 
     return numerador / denominador
 
-def derivada_segunda_central(erro, x, Dx):
+def derivada_segunda_central(erro, x, Dx, funcao = funcao_exemplo):
     if (erro == 'quadratico'):
         numerador = funcao(x + Dx) - 2 * funcao(x) + funcao(x - Dx)
         denominador = Dx*Dx
@@ -95,7 +98,7 @@ def derivada_segunda_central(erro, x, Dx):
     return numerador / denominador
 
 # Derivada Terceira
-def derivada_terceira_forward(erro, x, Dx):
+def derivada_terceira_forward(erro, x, Dx, funcao = funcao_exemplo):
     if (erro == 'linear'):
         numerador = + funcao(x + 3*Dx) - 3 * funcao(x + 2*Dx) + 3 * funcao(x + Dx) - funcao(x)
         denominador = Dx**3
@@ -106,7 +109,7 @@ def derivada_terceira_forward(erro, x, Dx):
 
     return numerador / denominador
 
-def derivada_terceira_backward(erro, x, Dx):
+def derivada_terceira_backward(erro, x, Dx, funcao = funcao_exemplo):
     if (erro == 'linear'):
         numerador = funcao(x) - 3 * funcao(x - Dx) + 3 * funcao(x - 2*Dx) - funcao(x - 3*Dx)
         denominador = Dx**3
@@ -117,7 +120,7 @@ def derivada_terceira_backward(erro, x, Dx):
 
     return numerador / denominador
 
-def derivada_terceira_central(erro, x, Dx):
+def derivada_terceira_central(erro, x, Dx, funcao = funcao_exemplo):
     if (erro == 'quadratico'):
         numerador = + funcao(x + 2*Dx) - 2 * funcao(x + Dx) + 2 * funcao(x - Dx) - funcao(x - 2*Dx)
         denominador = 2*Dx**3
