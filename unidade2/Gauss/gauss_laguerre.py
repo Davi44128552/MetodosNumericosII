@@ -4,64 +4,38 @@
 # Importando a biblioteca math
 import math
 
+
 # Função provisória
 def funcao_exemplo(x):
-    return x**2 
+    return x**2
+
 
 # Função para calcular gauss-laguerre
-def gauss_laguerre(n, funcao = funcao_exemplo):
-
+def gauss_laguerre(n, funcao=funcao_exemplo):
     # Determinando os pesos e pontos
     # 2 pontos
-    if (n == 2):
-
+    if n == 2:
         # Pesos
-        pesos = [
-            0.8535533906,
-            0.1464466094
-        ]
+        pesos = [0.8535533906, 0.1464466094]
 
         # Pontos
-        pontos = [
-            0.5857864376,
-            3.4142135624
-        ]
+        pontos = [0.5857864376, 3.4142135624]
 
     # 3 pontos
-    elif (n == 3):
-
+    elif n == 3:
         # Pesos
-        pesos = [
-            0.7110930099, 
-            0.2785177336, 
-            0.0103892565
-        ]
+        pesos = [0.7110930099, 0.2785177336, 0.0103892565]
 
         # Pontos
-        pontos = [
-            0.4157745568, 
-            2.2942803603, 
-            6.2899450829
-        ]
+        pontos = [0.4157745568, 2.2942803603, 6.2899450829]
 
     # 4 pontos
-    elif (n == 4):
-
+    elif n == 4:
         # Pesos
-        pesos = [
-            0.6031541043, 
-            0.3574186924, 
-            0.0388879085, 
-            0.0005392947
-        ]
-        
+        pesos = [0.6031541043, 0.3574186924, 0.0388879085, 0.0005392947]
+
         # Pontos
-        pontos = [
-            0.3225476896, 
-            1.7457611012, 
-            4.5366202969, 
-            9.3950709123
-        ]
+        pontos = [0.3225476896, 1.7457611012, 4.5366202969, 9.3950709123]
 
     # Calculando o valor da integral
     valor_integral = 0
@@ -70,6 +44,7 @@ def gauss_laguerre(n, funcao = funcao_exemplo):
 
     # Retornando o valor final
     return valor_integral
+
 
 # Testando a função
 print(gauss_laguerre(2))

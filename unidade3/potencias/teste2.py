@@ -3,10 +3,9 @@ from potencia_regular import *
 from potencia_inversa import *
 from potencia_com_deslocamento import *
 
+
 def main():
-    A = np.array([[2, 1, 1],
-              [4, -6, 0],
-              [-2, 7, 2]])
+    A = np.array([[2, 1, 1], [4, -6, 0], [-2, 7, 2]])
     v0 = np.array([1.0, 1.0, 1.0])
     erro = 0.00001
 
@@ -28,6 +27,7 @@ def main():
     print(f"Autovalor mais próximo de {deslocamento} (aproximado):", lambda_d)
     print("Autovetor associado (normalizado):", vetor_d)
     print()
+
 
 if __name__ == "__main__":
     main()

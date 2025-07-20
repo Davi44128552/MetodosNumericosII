@@ -1,65 +1,40 @@
 import math
 
+
 # Função provisória
 def funcao_exemplo(x):
     return x**2 * math.log(x) + math.exp(x)
+
 
 # Criando uma função para converter intervalo
 def converter_intervalo(alpha, a, b):
     return ((b + a) / 2) + ((b - a) / 2) * alpha
 
+
 # Função para calcular gauss-legendre
-def gauss_legendre(a, b, n, funcao = funcao_exemplo): # intervalo [a, b] com n pontos
-
+def gauss_legendre(a, b, n, funcao=funcao_exemplo):  # intervalo [a, b] com n pontos
     # Determinando os pesos e pontos de acordo com n para [-1, 1]
-    if (n == 2):
-
+    if n == 2:
         # Pesos
         # Repetimos alguns valores dos pesos para ser mais fácil o seu cálculo da integral
-        pesos = [
-            1,
-            1
-        ]
+        pesos = [1, 1]
 
         # Pontos
-        pontos = [
-            -0.5773502692,
-            0.5773502692
-        ]
+        pontos = [-0.5773502692, 0.5773502692]
 
-    elif (n == 3):
-
+    elif n == 3:
         # Pesos
-        pesos = [
-            0.5555555556,
-            0.8888888889,
-            0.5555555556
-        ]
+        pesos = [0.5555555556, 0.8888888889, 0.5555555556]
 
         # Pontos
-        pontos = [
-            -0.7745966692,
-            0,
-            0.7745966692
-        ]
+        pontos = [-0.7745966692, 0, 0.7745966692]
 
-    elif (n == 4):
-
+    elif n == 4:
         # Pesos
-        pesos = [
-            0.3478548451,
-            0.6521451549,
-            0.6521451549,
-            0.3478548451
-        ]
+        pesos = [0.3478548451, 0.6521451549, 0.6521451549, 0.3478548451]
 
         # Pontos
-        pontos = [
-            -0.8611363116,
-            -0.3399810436,
-            0.3399810436,
-            0.8611363116
-        ]
+        pontos = [-0.8611363116, -0.3399810436, 0.3399810436, 0.8611363116]
 
     # Realizando as conversões e calculando os valores
     valores_x = []

@@ -3,15 +3,18 @@ from potencia_regular import *
 from potencia_inversa import *
 from potencia_com_deslocamento import *
 
+
 def main():
     # Primeira matriz resolvida na aula
-    A = np.array([
-        [21, 29, 21, 32, 40],
-        [29, 94, 62, 87, 94],
-        [21, 62, 131, 90, 73],
-        [32, 87, 90, 94, 95],
-        [40, 94, 73, 95, 105]
-    ])
+    A = np.array(
+        [
+            [21, 29, 21, 32, 40],
+            [29, 94, 62, 87, 94],
+            [21, 62, 131, 90, 73],
+            [32, 87, 90, 94, 95],
+            [40, 94, 73, 95, 105],
+        ]
+    )
     v0 = np.array([1.0, 1.0, 1.0, 1.0, 1.0])
     erro = 0.00001
 
@@ -33,6 +36,7 @@ def main():
     print(f"Autovalor mais próximo de {deslocamento} (aproximado):", lambda_d)
     print("Autovetor associado (normalizado):", vetor_d)
     print()
+
 
 if __name__ == "__main__":
     main()

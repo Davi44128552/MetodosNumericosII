@@ -2,6 +2,7 @@
 from householder import *
 from qr import *
 
+
 def caixa_preta(A):
     # Usando o método de householder
     A_tridiag, H = tridiagonal_householder(A)

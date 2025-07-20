@@ -1,10 +1,10 @@
 # Importando numpy para operações com vetores
 import numpy as np
-from potencia_regular import * # Importando a potência regular 
+from potencia_regular import *  # Importando a potência regular
+
 
 # Criando a função para implementar o método da potência regular
-def potencia_inversa(A, v0, erro = 0.00001):
-
+def potencia_inversa(A, v0, erro=0.00001):
     # Calculando a inversa da matriz A
     A_inversa = np.linalg.inv(A)
 
@@ -16,6 +16,6 @@ def potencia_inversa(A, v0, erro = 0.00001):
     lambda_resultante = 1 / lambda_resultante
 
     # O vetor se mantém
-    
+
     # Retornando o resultado final
     return lambda_resultante, vetor_resultante

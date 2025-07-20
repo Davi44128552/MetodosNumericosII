@@ -2,6 +2,7 @@
 import numpy as np
 import math
 
+
 # Criando uma função para realizar a soma dos quadrados dos termos abaixo da diagonal
 def soma_quadrados_abaixo_diagonal(A):
     # Definindo a dimensão da matriz
@@ -19,8 +20,11 @@ def soma_quadrados_abaixo_diagonal(A):
     # Retornando a soma
     return soma
 
+
 # Definindo a função para construir a matriz de jacobi
-def matriz_jacobi(A, i, j, epsilon = 0.000001): # Defino epsilon mas o usuário podee passar
+def matriz_jacobi(
+    A, i, j, epsilon=0.000001
+):  # Defino epsilon mas o usuário podee passar
     # Definindo a dimensão da matriz
     n = A.shape[0]
 
@@ -28,18 +32,17 @@ def matriz_jacobi(A, i, j, epsilon = 0.000001): # Defino epsilon mas o usuário 
     I = np.eye(n)
 
     # Verificando os casos
-    if (abs(A[i][j]) <= epsilon):
+    if abs(A[i][j]) <= epsilon:
         return I
-    
-    # Caso a diferença entre o elemento jj da matriz A seja menor que epsilon
-    if (abs(A[j][j]) <= epsilon):
 
+    # Caso a diferença entre o elemento jj da matriz A seja menor que epsilon
+    if abs(A[j][j]) <= epsilon:
         # Verificando se Aij é menor ou não que 0
-        if (A[i][j] < 0):
+        if A[i][j] < 0:
             theta = math.pi / 2
 
         else:
-            theta = - (math.pi / 2)
+            theta = -(math.pi / 2)
 
     # Caso contrário
     else:
@@ -50,10 +53,11 @@ def matriz_jacobi(A, i, j, epsilon = 0.000001): # Defino epsilon mas o usuário 
     I[i][i] = math.cos(theta)
     I[j][j] = math.cos(theta)
     I[i][j] = math.sin(theta)
-    I[j][i] = - math.sin(theta)
+    I[j][i] = -math.sin(theta)
 
     # Retornando a matriz resultante
     return I
+
 
 # Criando uma função para decomposição QR
 def decomposicaoQR(A):
@@ -68,14 +72,12 @@ def decomposicaoQR(A):
 
     # Percorrendo o loop das colunas
     for j in range(0, n - 1):
-
         # Percorrendo o loop das linhas
-        for i in range(j +1, n):
-            
+        for i in range(j + 1, n):
             # Construção da matriz de jacobi pela função anteriormente criada
             J_ij = matriz_jacobi(R_anterior, i, j)
 
-            # Definindo o novo valor de R 
+            # Definindo o novo valor de R
             R = J_ij @ R_anterior
 
             # Salvando novo R para a próxima iteração
@@ -86,27 +88,28 @@ def decomposicaoQR(A):
 
     # Definindo Q, que é a transposta de QT
     Q = QT.T
-    
+
     # Retornando os resultados
     return Q, R
 
+
 # Definindo a função do método QR
-def qr(A, epsilon = 0.00000001): # Defino epsilon para caso o usuário não passe nada
+def qr(A, epsilon=0.00000001):  # Defino epsilon para caso o usuário não passe nada
     # Definindo as dimensões da matriz
     n = A.shape[0]
-    
+
     # Definindo P, inicialmente como matriz identidade
     P = np.eye(n)
 
     # Definindo A_nova e A_velha
-    A = A.copy() # A_nova
+    A = A.copy()  # A_nova
     A_anterior = A.copy()
 
     # Adicionando um valor inicial para entrar no loop
     val = 1
 
     # Loop do erro
-    while (val > epsilon):
+    while val > epsilon:
         # Recebendo Q e R como resultado da decomposição, feita anteriormente
         Q, R = decomposicaoQR(A)
 
