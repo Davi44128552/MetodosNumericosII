@@ -1,9 +1,7 @@
 import math
 
-
 def funcao_exemplo(x):
     return x**2
-
 
 # Fórmula aberta newton-cotes grau 1
 def formula_aberta_grau_1(x_inicio, x_fim=None, delta_x=None, funcao=funcao_exemplo):
@@ -16,7 +14,6 @@ def formula_aberta_grau_1(x_inicio, x_fim=None, delta_x=None, funcao=funcao_exem
 
     # Retornando a fórmula que calcula a intergral
     return (delta_x / 2) * (funcao(x_inicio + h) + funcao(x_inicio + 2 * h))
-
 
 # Fórmula aberta newton-cotes grau 2
 def formula_aberta_grau_2(x_inicio, x_fim=None, delta_x=None, funcao=funcao_exemplo):
@@ -33,7 +30,6 @@ def formula_aberta_grau_2(x_inicio, x_fim=None, delta_x=None, funcao=funcao_exem
         - funcao(x_inicio + 2 * h)
         + (2 * funcao(x_inicio + 3 * h))
     )
-
 
 # Fórmula aberta newton-cotes grau 3
 def formula_aberta_grau_3(x_inicio, x_fim=None, delta_x=None, funcao=funcao_exemplo):
@@ -52,7 +48,6 @@ def formula_aberta_grau_3(x_inicio, x_fim=None, delta_x=None, funcao=funcao_exem
         + (11 * funcao(x_inicio + 4 * h))
     )
 
-
 # Fórmula aberta newton-cotes grau 4
 def formula_aberta_grau_4(x_inicio, x_fim=None, delta_x=None, funcao=funcao_exemplo):
     # Se x_fim tiver sido informado, calculamos delta_x
@@ -70,28 +65,3 @@ def formula_aberta_grau_4(x_inicio, x_fim=None, delta_x=None, funcao=funcao_exem
         - 14 * funcao(x_inicio + 4 * h)
         + 11 * funcao(x_inicio + 5 * h)
     )
-
-
-def integral_final(x_inicio, x_fim, erro, funcao=funcao_exemplo):
-    erro_atual = float("inf")
-    integral_ultima = formula_aberta_grau_4(x_inicio, x_fim=x_fim, funcao=funcao)
-    n = 1
-    iteracoes = 0
-    while erro_atual > erro:
-        iteracoes += 1
-        n *= 2
-        h = (x_fim - x_inicio) / n
-        integral_atual = 0
-        for i in range(n):
-            a = x_inicio + i * h
-            b = a + h
-            integral_atual += formula_aberta_grau_4(a, x_fim=b, funcao=funcao)
-        erro_atual = abs(integral_atual - integral_ultima)
-        integral_ultima = integral_atual
-
-    return integral_ultima, iteracoes
-
-
-resultado, iteracoes = integral_final(0, 1, erro=0.00000001)
-print(f"Resultado da integral: {resultado}")
-print(f"Iterações: {iteracoes}")

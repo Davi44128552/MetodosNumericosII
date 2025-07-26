@@ -3,11 +3,10 @@
 # Importando bibliotecas necessárias para o cálculo deste método
 import numpy as np
 import matplotlib.pyplot as plt
-from runge_kutta import runge_kutta_4 as rk4 # Importando o nosso método de runge-kutta
+from runge_kutta import runge_kutta_4 as rk4  # Importando o nosso método de runge-kutta
 
 # Função para o método
 def preditor_corretor_4(funcao, t_inicial, y_inicial, h, n):
-
     # Chamando o runge-kutta para dar os valores de t e y
     y_rk, t_rk = rk4(funcao, t_inicial, y_inicial, h, 3)
 
@@ -17,7 +16,6 @@ def preditor_corretor_4(funcao, t_inicial, y_inicial, h, n):
 
     # Loop do método
     for i in range(3, n):
-
         # Preditor
         f0 = funcao(t_atual[i - 3], y_atual[i - 3])
         f1 = funcao(t_atual[i - 2], y_atual[i - 2])

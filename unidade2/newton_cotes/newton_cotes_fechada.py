@@ -1,10 +1,8 @@
 import math
 
-
 # Definindo função que vai ser usada para os testes
 def funcao_exemplo(x):
     return x**2
-
 
 # Integrais fechadas
 # Integral entre dois pontos para polinômio de primeiro grau
@@ -20,7 +18,6 @@ def formula_fechada_grau_1(x_inicio, x_fim=None, delta_x=None, funcao=funcao_exe
     # Retornando a fórmula que calcula a integral
     return (delta_x / 2) * (funcao(x_fim) + funcao(x_inicio))
 
-
 def formula_fechada_grau_2(x_inicio, x_fim=None, delta_x=None, funcao=funcao_exemplo):
     # Se x_fim tiver sido informado, calculamos delta_x
     if delta_x is None:
@@ -35,7 +32,6 @@ def formula_fechada_grau_2(x_inicio, x_fim=None, delta_x=None, funcao=funcao_exe
 
     # Retornando a fórmula que calcula a intergral
     return (delta_x / 6) * (funcao(x_fim) + 4 * funcao(x_inicio + h) + funcao(x_inicio))
-
 
 def formula_fechada_grau_3(x_inicio, x_fim=None, delta_x=None, funcao=funcao_exemplo):
     # Se x_fim tiver sido informado, calculamos delta_x
@@ -57,7 +53,6 @@ def formula_fechada_grau_3(x_inicio, x_fim=None, delta_x=None, funcao=funcao_exe
         + funcao(x_fim)
     )
 
-
 def formula_fechada_grau_4(x_inicio, x_fim=None, delta_x=None, funcao=funcao_exemplo):
     # Se x_fim tiver sido informado, calculamos delta_x
     if delta_x is None:
@@ -78,29 +73,3 @@ def formula_fechada_grau_4(x_inicio, x_fim=None, delta_x=None, funcao=funcao_exe
         + 32 * funcao(x_inicio + 3 * h)
         + 7 * funcao(x_inicio + 4 * h)
     )
-
-
-# Funcao para calcular a integral correta
-def integral_final(x_inicio, x_fim, erro, funcao=funcao_exemplo):
-    erro_atual = float("inf")
-    integral_ultima = formula_fechada_grau_3(x_inicio, x_fim=x_fim, funcao=funcao)
-    n = 1
-    iteracoes = 0
-    while erro_atual > erro:
-        iteracoes += 1
-        n *= 2
-        h = (x_fim - x_inicio) / n
-        integral_atual = 0
-        for i in range(n):
-            a = x_inicio + i * h
-            b = a + h
-            integral_atual += formula_fechada_grau_3(a, x_fim=b, funcao=funcao)
-        erro_atual = abs(integral_atual - integral_ultima)
-        integral_ultima = integral_atual
-
-    return integral_ultima, iteracoes
-
-
-resultado, iteracoes = integral_final(0, 1, erro=0.00000001)
-print(f"Resultado da integral: {resultado}")
-print(f"Iterações: {iteracoes}")

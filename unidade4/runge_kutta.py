@@ -6,22 +6,20 @@ import matplotlib.pyplot as plt
 
 # Método de runge-kutta
 def runge_kutta_4(funcao, t_inicial, y_inicial, h, n):
-
     # Definindo valor atual
-    y_atual = np.array(y_inicial, dtype = float)
-    
+    y_atual = np.array(y_inicial, dtype=float)
+
     # Inicializando os tempos
     lista_tempos = [t_inicial]
 
     # Inicializando os valores
     lista_valores = [y_atual.copy()]
-    
+
     # Definindo tempo atual
     t_atual = t_inicial
 
     # Loop principal para calcular o método
     for i in range(0, n):
-
         # Calculando os estágios do método
         k1 = funcao(t_atual, y_atual)
         k2 = funcao(t_atual + (h / 2), y_atual + (h / 2) * k1)
@@ -38,4 +36,3 @@ def runge_kutta_4(funcao, t_inicial, y_inicial, h, n):
 
     # Retornando o resultado do método
     return np.array(lista_valores), np.array(lista_tempos)
-
